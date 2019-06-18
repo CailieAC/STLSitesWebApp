@@ -20,7 +20,7 @@ namespace STLSitesWebApp.Controllers
 
         public IActionResult Index(LocationListItemViewModel model)
         {
-            return View();
+            return View(model);
         }
 
         [HttpGet]
@@ -30,11 +30,19 @@ namespace STLSitesWebApp.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(LocationCreateViewModel location)
+        public IActionResult Create(LocationCreateViewModel model)
         {
             //context.Add(location);
             //context.SaveChanges();
 
+            //TODO: Figure out how to save to context
+            /* 
+            if (!ModelState.IsValid)
+                return View(model);
+
+            model.Persist(context);
+            return RedirectToAction(controllerName: "Movie", actionName: "Index");
+            */
 
             return View();
         }
