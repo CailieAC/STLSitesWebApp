@@ -1,4 +1,6 @@
-﻿using System;
+﻿using STLSitesWebApp.Data;
+using STLSitesWebApp.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -12,18 +14,18 @@ namespace STLSitesWebApp.ViewModels
         public int Rating { get; set; }
         public string RatingDescription { get; set; }
 
-        /*
-        public void Persist(MoviesDbContext context)
+        
+        public void Persist(ApplicationDbContext context)
         {
             LocationRating rating = new LocationRating
             {
                 LocationId = this.LocationId,
-                Rating = this.Rating
+                Rating = this.Rating,
                 RatingDescription = this.RatingDescription
             };
             context.Add(rating);
             context.SaveChanges();
         }
-        */
+        
     }
 }
