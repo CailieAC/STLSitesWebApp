@@ -12,7 +12,7 @@ namespace STLSitesWebApp.Controllers
     public class LocationController : Controller
     {
        
-        //TODO Add a context constructor here, but ideally should not be located in the controller
+        //TODO We added a context constructor here, but ideally this should not be located in the controller
         private ApplicationDbContext context;
         public LocationController(ApplicationDbContext context)
         {
@@ -20,12 +20,11 @@ namespace STLSitesWebApp.Controllers
         }
 
         //public IActionResult Index(LocationListItemViewModel model)
-        public IActionResult Index(LocationListItemViewModel model)
+        public IActionResult Index()
         {
-            //List<LocationListItemViewModel> locations = LocationListItemViewModel.GetLocations(context);
-            return View(model);
+            List<Location> locations = Location.GetLocations(context);
+            return View(locations);
         }
-
 
         [HttpGet]
         public IActionResult Create()
@@ -34,12 +33,12 @@ namespace STLSitesWebApp.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(LocationCreateViewModel model)
+        public IActionResult Create(Location location)
         {
             if (!ModelState.IsValid)
-                return View(model);
+                return View(location);
             
-            model.Persist(context);
+            location.Persist(context);
             return RedirectToAction(controllerName: "Location", actionName: "Index");
 
         }
