@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using STLSitesWebApp.Data;
 
 namespace STLSitesWebApp.Models
@@ -11,12 +12,7 @@ namespace STLSitesWebApp.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public List<LocationRating> Ratings { get; set; }
-
-        internal static List<Location> GetLocations(ApplicationDbContext context)
-        {
-            return context.Locations.ToList();
-        }
+        //public List<LocationRating> Ratings { get; set; }
 
         public void Persist(ApplicationDbContext context)
         {
@@ -29,5 +25,17 @@ namespace STLSitesWebApp.Models
             context.Add(location);
             context.SaveChanges();
         }
+
+        //public void Persist(int id, ApplicationDbContext context)
+        //{
+        //    Location location = new Location
+        //    {
+        //        Id = id,
+        //        Name = this.Name,
+        //        Description = this.Description,
+        //    };
+        //    context.Add(location);
+        //    context.SaveChanges();
+        //}
     }
 }

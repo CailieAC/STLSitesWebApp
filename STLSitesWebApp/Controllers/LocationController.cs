@@ -19,11 +19,9 @@ namespace STLSitesWebApp.Controllers
             this.context = context;
         }
 
-        //public IActionResult Index(LocationListItemViewModel model)
         public IActionResult Index()
         {
-            List<Location> locations = Location.GetLocations(context);
-            return View(locations);
+            return View(context.Locations);
         }
 
         [HttpGet]
@@ -43,5 +41,31 @@ namespace STLSitesWebApp.Controllers
 
         }
 
+        //[HttpGet]
+        //public IActionResult Edit(int id)
+        //{
+        //    return View(context.Locations.Find(id));
+        //}
+
+        //[HttpPost]
+        //public IActionResult Edit(int id, Location location)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        //location.ResetLocationList(context);
+        //        return View(location);
+        //    }
+
+        //    location.Persist(id, context);
+        //    return RedirectToAction(actionName: nameof(Index));
+        //}
+
+        [HttpGet]
+        public IActionResult Delete(int id)
+        {
+            context.Remove(context.Locations.Find(id));
+            context.SaveChanges();
+            return RedirectToAction(actionName: nameof(Index));
+        }
     }
 }
