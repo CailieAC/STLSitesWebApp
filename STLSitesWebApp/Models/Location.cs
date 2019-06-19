@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -10,6 +11,7 @@ namespace STLSitesWebApp.Models
     public class Location
     {
         public int Id { get; set; }
+        [Display (Name="Location")]
         public string Name { get; set; }
         public string Description { get; set; }
         //public List<LocationRating> Ratings { get; set; }
