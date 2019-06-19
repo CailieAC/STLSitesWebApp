@@ -13,29 +13,29 @@ namespace STLSitesWebApp.ViewModels
         public string Name { get; set; }
         public string Description { get; set; }
 
+        //List<Location> locations = context.Locations.ToList();
+
         private ApplicationDbContext context;
         public LocationListItemViewModel(ApplicationDbContext context)
         {
             this.context = context;
         }
+        
+        internal static List<LocationListItemViewModel> GetLocations(ApplicationDbContext context)
+        {
+            return context.LocationListItemViewModel.ToList();
+        }
 
-        //internal static List<LocationListItemViewModel> GetLocations(ApplicationDbContext context)
-        //{
-        //    return context.Locations;
-                
-        //        .GetModels()
-        //        .Select(d => GetListItem(d))
-        //        .ToList();
-        //}
-
-        //private static LocationListItemViewModel GetListItem(Location location)
-        //{
-        //    return new LocationListItemViewModel
-        //    {
-        //        Id = location.Id,
-        //        Name = location.Name,
-        //        Description = location.Description,
-        //    };
-        //}
+        /*
+        private static LocationListItemViewModel GetListItem(Location location)
+        {
+            return new LocationListItemViewModel
+            {
+                Id = location.Id,
+                Name = location.Name,
+                Description = location.Description,
+            };
+        }
+        */
     }
 }

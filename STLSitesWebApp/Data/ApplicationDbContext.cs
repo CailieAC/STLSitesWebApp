@@ -20,5 +20,7 @@ namespace STLSitesWebApp.Data
         }
 
         public DbSet<STLSitesWebApp.ViewModels.LocationListItemViewModel> LocationListItemViewModel { get; set; }
+
+        public DbSet<STLSitesWebApp.ViewModels.LocationCreateViewModel> LocationCreateViewModel { get; set; }
     }
 }
