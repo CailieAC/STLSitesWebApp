@@ -20,10 +20,10 @@ namespace STLSitesWebApp.Controllers
         }
 
         //public IActionResult Index(LocationListItemViewModel model)
-        public IActionResult Index()
+        public IActionResult Index(LocationListItemViewModel model)
         {
-            List<LocationListItemViewModel> locations = LocationListItemViewModel.GetLocations(context);
-            return View(locations);
+            //List<LocationListItemViewModel> locations = LocationListItemViewModel.GetLocations(context);
+            return View(model);
         }
 
 

@@ -21,9 +21,9 @@ namespace STLSitesWebApp.ViewModels
             this.context = context;
         }
         
-        internal static List<LocationListItemViewModel> GetLocations(ApplicationDbContext context)
+        internal static List<Location> GetLocations(ApplicationDbContext context)
         {
-            return context.LocationListItemViewModel.ToList();
+            return context.Locations.ToList();
         }
 
         /*
