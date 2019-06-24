@@ -21,22 +21,24 @@ namespace STLSitesWebApp.Controllers
 
         public IActionResult Index()
         {
-            return View(context.Locations);
+            return View(context.LocationListItemViewModel);
         }
 
         [HttpGet]
         public IActionResult Create()
         {
-            return View();
+            //LocationCreateViewModel viewModel = new LocationCreateViewModel(context);
+            //return View(viewModel);
+            return View(context.LocationCreateViewModel);
         }
 
         [HttpPost]
-        public IActionResult Create(Location location)
+        public IActionResult Create(LocationCreateViewModel model)
         {
             if (!ModelState.IsValid)
-                return View(location);
+                return View(model);
             
-            location.Persist(context);
+            model.Persist(context);
             return RedirectToAction(controllerName: "Location", actionName: "Index");
 
         }
