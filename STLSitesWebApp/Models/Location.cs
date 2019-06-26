@@ -12,9 +12,12 @@ namespace STLSitesWebApp.Models
     {
         public int Id { get; set; }
         [Display (Name="Location")]
+        [Required]
         public string Name { get; set; }
+        [Required]
         public string Description { get; set; }
         //public List<LocationRating> Ratings { get; set; }
+        //public string Address { get; set; }
 
         public void Persist(ApplicationDbContext context)
         {
