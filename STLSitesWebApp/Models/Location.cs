@@ -17,6 +17,7 @@ namespace STLSitesWebApp.Models
         public List<LocationRating> Ratings { get; set; }
         public int AverageRating { get; set; }
 
+        /*
         public void Persist(ApplicationDbContext context)
         {
             Location location = new Location
@@ -28,6 +29,7 @@ namespace STLSitesWebApp.Models
             context.Add(location);
             context.SaveChanges();
         }
+        */
 
         //public void Persist(int id, ApplicationDbContext context)
         //{

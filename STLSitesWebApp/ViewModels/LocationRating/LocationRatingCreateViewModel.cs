@@ -13,7 +13,7 @@ namespace STLSitesWebApp.ViewModels
     {
         //private string ratings = "12345";
 
-        public int Id { get; set; }
+        //public int Id { get; set; }
         [Required]
         public int LocationId { get; set; }
         [Required]
@@ -23,7 +23,7 @@ namespace STLSitesWebApp.ViewModels
         public string RatingDescription { get; set; }
 
 
-        internal void Persist(ApplicationDbContext context)
+        public void Persist(ApplicationDbContext context)
         {
             LocationRating rating = new LocationRating
             {

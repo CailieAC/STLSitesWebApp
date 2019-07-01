@@ -20,6 +20,7 @@ namespace STLSitesWebApp.ViewModels
 
         public LocationListItemViewModel(Location location)
         {
+            this.Id = location.Id;
             this.Name = location.Name;
             this.Description = location.Description;
         }

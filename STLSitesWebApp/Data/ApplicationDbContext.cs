@@ -19,7 +19,5 @@ namespace STLSitesWebApp.Data
         {
         }
 
-        public DbSet<STLSitesWebApp.ViewModels.LocationRatingCreateViewModel> LocationRatingCreateViewModel { get; set; }
-
     }
 }

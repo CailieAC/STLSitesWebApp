@@ -10,7 +10,7 @@ namespace STLSitesWebApp.ViewModels
 {
     public class LocationCreateViewModel
     {
-        public int Id { get; set; }
+        //public int Id { get; set; }
         [Display(Name = "Location")]
         [Required]
         public string Name { get; set; }
