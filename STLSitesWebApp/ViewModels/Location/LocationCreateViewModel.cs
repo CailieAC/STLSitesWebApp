@@ -23,6 +23,7 @@ namespace STLSitesWebApp.ViewModels
             {
                 Name = this.Name,
                 Description = this.Description,
+
             };
             context.Add(location);
             context.SaveChanges();

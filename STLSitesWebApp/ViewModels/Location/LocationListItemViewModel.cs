@@ -23,7 +23,51 @@ namespace STLSitesWebApp.ViewModels
             this.Id = location.Id;
             this.Name = location.Name;
             this.Description = location.Description;
+            this.AverageRating = GetAverageRating(location);
+            this.NumberOfRatings = GetCount(location);
         }
+
+        //ToDO: Make sure this works...
+        private static string GetAverageRating(Location location)
+        {
+            string average = "none";
+            int count = 0;
+            int total = 0;
+            if (location.Ratings != null)
+            {
+                foreach (LocationRating rating in location.Ratings)
+                {
+                    count++;
+                    total += rating.Rating;
+                }
+                if (location.Ratings.Count > 0)
+                {
+                    average = (total/count).ToString();
+                }
+            }
+            return average;
+        }
+
+        private static int GetCount(Location location)
+        {
+            int count = 0;
+            if (location.Ratings != null)
+            {
+                foreach (LocationRating rating in location.Ratings)
+                {
+                    count++;
+                }
+            }
+            return count;
+        }
+
+        //[HiddenInput(DisplayValue = false)]
+        public int Id { get; set; }
+        [Display(Name = "Location Name")]
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public string AverageRating { get; set; }
+        public int NumberOfRatings { get; set; }
 
         /*
         private static LocationListItemViewModel GetListItem(Location location)
@@ -36,15 +80,7 @@ namespace STLSitesWebApp.ViewModels
             };
         }
         */
-
-        //[HiddenInput(DisplayValue = false)]
-        public int Id { get; set; }
-        [Display(Name = "Location Name")]
-        public string Name { get; set; }
-        public string Description { get; set; }
-        //public List<int> Ratings { get; set; }
-        public int AverageRating { get; set; }
-
+       
         //List<Location> locations = context.Locations.ToList();
 
         /*

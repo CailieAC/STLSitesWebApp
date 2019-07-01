@@ -31,6 +31,13 @@ namespace STLSitesWebApp.ViewModels
                 Rating = this.Rating,
                 RatingDescription = this.RatingDescription
             };
+            //TODO: Figure out how to add the new Rating item to the list of Ratings for a Location
+            //The Ratings array does not exist yet. - need to re-set the database to have each item
+            //start out with that array of Ratings objects? Or find a way to instantiate each location 
+            //object with that.
+            Location locationToRate = context.Locations.SingleOrDefault(location => location.Id == LocationId);
+                locationToRate.Ratings.Add(rating);
+
             context.Add(rating);
             context.SaveChanges();
         }
