@@ -9,6 +9,7 @@ namespace STLSitesWebApp.Models
     {
         public int Id { get; set; }
         public int LocationId { get; set; }
+        public string LocationName { get; set; }
         public int Rating { get; set; }
         public string RatingDescription { get; set; }
     }

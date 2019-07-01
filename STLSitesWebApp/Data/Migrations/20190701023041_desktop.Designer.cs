@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using STLSitesWebApp.Data;
 
 namespace STLSitesWebApp.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190701023041_desktop")]
+    partial class desktop
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -190,8 +192,6 @@ namespace STLSitesWebApp.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("AverageRating");
-
                     b.Property<string>("Description");
 
                     b.Property<string>("Name");
@@ -209,35 +209,45 @@ namespace STLSitesWebApp.Data.Migrations
 
                     b.Property<int>("LocationId");
 
-                    b.Property<string>("LocationName");
-
                     b.Property<int>("Rating");
 
                     b.Property<string>("RatingDescription");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("LocationId");
-
                     b.ToTable("LocationRating");
                 });
 
-            modelBuilder.Entity("STLSitesWebApp.ViewModels.LocationRatingCreateViewModel", b =>
+            modelBuilder.Entity("STLSitesWebApp.ViewModels.LocationCreateViewModel", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("LocationId");
+                    b.Property<string>("Description")
+                        .IsRequired();
 
-                    b.Property<int>("Rating");
-
-                    b.Property<string>("RatingDescription")
+                    b.Property<string>("Name")
                         .IsRequired();
 
                     b.HasKey("Id");
 
-                    b.ToTable("LocationRatingCreateViewModel");
+                    b.ToTable("LocationCreateViewModel");
+                });
+
+            modelBuilder.Entity("STLSitesWebApp.ViewModels.LocationListItemViewModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Description");
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("LocationListItemViewModel");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -282,14 +292,6 @@ namespace STLSitesWebApp.Data.Migrations
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser")
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("STLSitesWebApp.Models.LocationRating", b =>
-                {
-                    b.HasOne("STLSitesWebApp.Models.Location")
-                        .WithMany("Ratings")
-                        .HasForeignKey("LocationId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618

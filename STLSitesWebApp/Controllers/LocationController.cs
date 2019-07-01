@@ -21,15 +21,20 @@ namespace STLSitesWebApp.Controllers
 
         public IActionResult Index()
         {
-            return View(context.LocationListItemViewModel);
+            //return View(context.LocationListItemViewModel.ToList());
+            List<LocationListItemViewModel> locations = LocationListItemViewModel.GetLocations(context);
+            return View(locations);
         }
 
         [HttpGet]
         public IActionResult Create()
         {
-            //LocationCreateViewModel viewModel = new LocationCreateViewModel(context);
-            //return View(viewModel);
-            return View(context.LocationCreateViewModel);
+            //LocationCreateViewModel viewModel = new LocationCreateViewModel();
+            // return View(viewModel);
+
+            //return View(context.LocationCreateViewModel);
+
+            return View();
         }
 
         [HttpPost]

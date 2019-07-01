@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using STLSitesWebApp.Data;
 
 namespace STLSitesWebApp.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190701032619_LocationRatings")]
+    partial class LocationRatings
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -220,24 +222,6 @@ namespace STLSitesWebApp.Data.Migrations
                     b.HasIndex("LocationId");
 
                     b.ToTable("LocationRating");
-                });
-
-            modelBuilder.Entity("STLSitesWebApp.ViewModels.LocationRatingCreateViewModel", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("LocationId");
-
-                    b.Property<int>("Rating");
-
-                    b.Property<string>("RatingDescription")
-                        .IsRequired();
-
-                    b.HasKey("Id");
-
-                    b.ToTable("LocationRatingCreateViewModel");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

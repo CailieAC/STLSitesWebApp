@@ -14,7 +14,8 @@ namespace STLSitesWebApp.Models
         [Display (Name="Location")]
         public string Name { get; set; }
         public string Description { get; set; }
-        //public List<LocationRating> Ratings { get; set; }
+        public List<LocationRating> Ratings { get; set; }
+        public int AverageRating { get; set; }
 
         public void Persist(ApplicationDbContext context)
         {
