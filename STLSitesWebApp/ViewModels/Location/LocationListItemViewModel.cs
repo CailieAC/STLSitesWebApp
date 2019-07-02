@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using STLSitesWebApp.Data;
 using STLSitesWebApp.Models;
 using System;
@@ -11,9 +12,10 @@ namespace STLSitesWebApp.ViewModels
 {
     public class LocationListItemViewModel
     {
-        internal static List<LocationListItemViewModel> GetLocations(ApplicationDbContext context)
+        public static List<LocationListItemViewModel> GetLocations(ApplicationDbContext context)
         {
             return context.Locations
+                .Include(p => p.Ratings)
                 .Select(p => new LocationListItemViewModel(p))
                 .ToList();
         }

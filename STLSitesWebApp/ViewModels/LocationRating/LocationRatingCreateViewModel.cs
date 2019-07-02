@@ -35,8 +35,8 @@ namespace STLSitesWebApp.ViewModels
             //The Ratings array does not exist yet. - need to re-set the database to have each item
             //start out with that array of Ratings objects? Or find a way to instantiate each location 
             //object with that.
-            Location locationToRate = context.Locations.SingleOrDefault(location => location.Id == LocationId);
-                locationToRate.Ratings.Add(rating);
+            //Location locationToRate = context.Locations.SingleOrDefault(location => location.Id == LocationId);
+            //    locationToRate.Ratings.Add(rating);
 
             context.Add(rating);
             context.SaveChanges();
