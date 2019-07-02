@@ -16,13 +16,12 @@ namespace STLSitesWebApp.ViewModels
         public string Description { get; set; }
         public List<LocationRating> Ratings { get; set; }
 
-        
-        public static List<LocationDetailsViewModel> GetLocations(ApplicationDbContext context)
+        public static LocationDetailsViewModel GetLocation(int? id, ApplicationDbContext context)
         {
             return context.Locations
                 .Include(p => p.Ratings)
                 .Select(p => new LocationDetailsViewModel(p))
-                .ToList();
+                .SingleOrDefault(p => p.Id == id);
         }
 
         public LocationDetailsViewModel(Location location)
@@ -32,6 +31,11 @@ namespace STLSitesWebApp.ViewModels
             this.Description = location.Description;
             this.Ratings = location.Ratings;
         }
-        
+
+        public LocationDetailsViewModel()
+        {
+            
+        }
+
     }
 }

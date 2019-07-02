@@ -49,10 +49,13 @@ namespace STLSitesWebApp.Controllers
         }
 
         [HttpGet]
-        public IActionResult Details(LocationDetailsViewModel model)
+        public IActionResult Details(int locationId)
         {
-            List<LocationDetailsViewModel> locations = LocationDetailsViewModel.GetLocations(context);
-            return View(locations);
+            LocationDetailsViewModel location = LocationDetailsViewModel.GetLocation(locationId, context);
+            return View(location);
+
+            //return View(new LocationDetailsViewModel(locationId, context));
+            //return View(context.LocationDetailsViewModel.Find(id));
         }
 
         //[HttpGet]

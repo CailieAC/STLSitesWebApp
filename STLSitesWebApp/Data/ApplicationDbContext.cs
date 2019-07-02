@@ -19,5 +19,7 @@ namespace STLSitesWebApp.Data
         {
         }
 
+        public DbSet<STLSitesWebApp.ViewModels.LocationDetailsViewModel> LocationDetailsViewModel { get; set; }
+
     }
 }
