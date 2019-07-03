@@ -9,7 +9,7 @@ namespace STLSitesWebApp.Models
 {
     public enum County
     {
-        [Description("St. Charles")]
+        [Display(Name ="St. Charles")]
         StCharles,
         [Display(Name = "St. Clair")]
         StClair,
