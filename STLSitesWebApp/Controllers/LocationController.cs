@@ -29,12 +29,12 @@ namespace STLSitesWebApp.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            //LocationCreateViewModel viewModel = new LocationCreateViewModel();
+            LocationCreateViewModel viewModel = new LocationCreateViewModel();
             // return View(viewModel);
 
             //return View(context.LocationCreateViewModel);
 
-            return View();
+            return View(viewModel);
         }
 
         [HttpPost]

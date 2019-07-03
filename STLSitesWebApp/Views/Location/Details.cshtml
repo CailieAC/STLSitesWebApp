@@ -29,6 +29,12 @@
             @Html.DisplayFor(model => model.Address)
         </dd>
         <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.LocationCounty)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.LocationCounty)
+        </dd>
+        <dt class="col-sm-2">
             @Html.ActionLink("Rate This Location", "Create", "LocationRating", new { LocationId = Model.Id })
         </dt>
     </dl>

@@ -16,6 +16,7 @@ namespace STLSitesWebApp.ViewModels
         public string Description { get; set; }
         [Display(Name="Street Address")]
         public string Address { get; set; }
+        public County LocationCounty { get; set; }
         public List<LocationRating> Ratings { get; set; }
 
         public static LocationDetailsViewModel GetLocation(int? id, ApplicationDbContext context)
@@ -32,6 +33,7 @@ namespace STLSitesWebApp.ViewModels
             this.Name = location.Name;
             this.Description = location.Description;
             this.Address = location.Address;
+            this.LocationCounty = location.LocationCounty;
             this.Ratings = location.Ratings;
         }
 
