@@ -26,6 +26,7 @@ namespace STLSitesWebApp.ViewModels
             this.Name = location.Name;
             this.Description = location.Description;
             this.Address = location.Address;
+            this.LocationCounty = location.LocationCounty;
             this.AverageRating = GetAverageRating(location);
             this.NumberOfRatings = GetCount(location);
         }
@@ -70,29 +71,9 @@ namespace STLSitesWebApp.ViewModels
         public string Name { get; set; }
         public string Description { get; set; }
         public string Address { get; set; }
+        public County LocationCounty { get; set; }
         public string AverageRating { get; set; }
         public int NumberOfRatings { get; set; }
 
-        /*
-        private static LocationListItemViewModel GetListItem(Location location)
-        {
-            return new LocationListItemViewModel
-            {
-                Id = location.Id,
-                Name = location.Name,
-                Description = location.Description,
-            };
-        }
-        */
-       
-        //List<Location> locations = context.Locations.ToList();
-
-        /*
-        private ApplicationDbContext context;
-        public LocationListItemViewModel(ApplicationDbContext context)
-        {
-            this.context = context;
-        }    
-        */
     }
 }

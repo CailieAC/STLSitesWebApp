@@ -1,4 +1,5 @@
-﻿using STLSitesWebApp.Data;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using STLSitesWebApp.Data;
 using STLSitesWebApp.Models;
 using System;
 using System.Collections.Generic;
@@ -19,6 +20,22 @@ namespace STLSitesWebApp.ViewModels
         public string Description { get; set; }
         [Display(Name = "Street Address")]
         public string Address { get; set; }
+        public County LocationCounty { get; set; }
+        public List<SelectListItem> LocationCounties { get; set; }
+
+        public LocationCreateViewModel()
+        {
+            LocationCounties = new List<SelectListItem>();
+
+            foreach (County county in Enum.GetValues(typeof(County)))
+            {
+                LocationCounties.Add(new SelectListItem
+                {
+                    Value = ((int)county).ToString(),
+                    Text = county.ToString()
+                });
+            }
+        }
 
         public void Persist(ApplicationDbContext context)
         {
@@ -26,8 +43,8 @@ namespace STLSitesWebApp.ViewModels
             {
                 Name = this.Name,
                 Description = this.Description,
-                Address = this.Address
-
+                Address = this.Address,
+                LocationCounty = this.LocationCounty
             };
             context.Add(location);
             context.SaveChanges();

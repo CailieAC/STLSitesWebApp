@@ -16,5 +16,6 @@ namespace STLSitesWebApp.Models
         public string Description { get; set; }
         public List<LocationRating> Ratings { get; set; }
         public string Address { get; set; }
+        public County LocationCounty { get; set; }
     }
 }
