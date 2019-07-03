@@ -15,10 +15,19 @@ namespace STLSitesWebApp.Data
         public DbSet<Location> Locations { get; set; }
         public DbSet<LocationRating> LocationRatings { get; set; }
 
+        //Add like this?
+        public DbSet<Category> Categories { get; set; }
+
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
         }
-
+        
+        //TODO
+        //protected override void OnModelCreating(ModelBuilder modelBuilder)
+        //{
+        //    modelBuilder.Entity<CategoryLocation>()
+        //        .HasKey(loc => new { loc.LocationID, loc.CategoryID });
+        //}
     }
 }
