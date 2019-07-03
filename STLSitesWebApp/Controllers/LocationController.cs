@@ -63,7 +63,6 @@ namespace STLSitesWebApp.Controllers
         {
             if (!ModelState.IsValid)
             {
-                //location.ResetLocationList(context);
                 return View(viewModel);
             }
 
