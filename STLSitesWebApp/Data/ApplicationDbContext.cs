@@ -15,14 +15,10 @@ namespace STLSitesWebApp.Data
         public DbSet<Location> Locations { get; set; }
         public DbSet<LocationRating> LocationRatings { get; set; }
 
-
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
         }
-
-
-        public DbSet<STLSitesWebApp.ViewModels.Location.LocationEditViewModel> LocationEditViewModel { get; set; }
 
     }
 }

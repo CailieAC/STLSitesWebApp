@@ -50,17 +50,17 @@ namespace STLSitesWebApp.ViewModels.Location
             }
         }
 
-        public void Persist(int id, ApplicationDbContext context)
+        public void Persist(int locationId, ApplicationDbContext context)
         {
-            Models.Location location = new Models.Location
-            {
-                Id = id,
-                Name = this.Name,
-                Description = this.Description,
-                Address = this.Address,
-                LocationCounty = this.LocationCounty
-            };
-            context.Add(location);
+            Models.Location location = context.Locations.Find(this.Id);
+
+            location.Id = this.Id;
+            location.Name = this.Name;
+            location.Description = this.Description;
+            location.Address = this.Address;
+            location.LocationCounty = this.LocationCounty;
+
+            context.Update(location);
             context.SaveChanges();
         }
     }

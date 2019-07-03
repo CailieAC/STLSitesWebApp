@@ -52,14 +52,14 @@ namespace STLSitesWebApp.Controllers
         }
 
         [HttpGet]
-        public IActionResult Edit(int id)
+        public IActionResult Edit(int locationId)
         {
-            return View(new LocationEditViewModel(id, context));
+            return View(new LocationEditViewModel(locationId, context));
             //return View(context.Locations.Find(id));
         }
 
         [HttpPost]
-        public IActionResult Edit(int id, LocationEditViewModel viewModel)
+        public IActionResult Edit(int locationId, LocationEditViewModel viewModel)
         {
             if (!ModelState.IsValid)
             {
@@ -67,14 +67,14 @@ namespace STLSitesWebApp.Controllers
                 return View(viewModel);
             }
 
-            viewModel.Persist(id, context);
+            viewModel.Persist(locationId, context);
             return RedirectToAction(actionName: nameof(Index));
         }
 
         [HttpGet]
-        public IActionResult Delete(int id)
+        public IActionResult Delete(int locationId)
         {
-            context.Remove(context.Locations.Find(id));
+            context.Remove(context.Locations.Find(locationId));
             context.SaveChanges();
             return RedirectToAction(actionName: nameof(Index));
         }
