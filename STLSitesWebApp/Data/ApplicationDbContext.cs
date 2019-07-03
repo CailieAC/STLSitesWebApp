@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using STLSitesWebApp.Models;
 using STLSitesWebApp.ViewModels;
+using STLSitesWebApp.ViewModels.Location;
 
 namespace STLSitesWebApp.Data
 {
@@ -19,6 +20,9 @@ namespace STLSitesWebApp.Data
             : base(options)
         {
         }
+
+
+        public DbSet<STLSitesWebApp.ViewModels.Location.LocationEditViewModel> LocationEditViewModel { get; set; }
 
     }
 }

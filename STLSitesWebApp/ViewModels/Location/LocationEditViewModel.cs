@@ -8,13 +8,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace STLSitesWebApp.ViewModels
+namespace STLSitesWebApp.ViewModels.Location
 {
-    public class LocationCreateViewModel
+    public class LocationEditViewModel
     {
-        //public int Id { get; set; }
+        public int Id { get; set; }
         [Display(Name = "Location")]
-        [Required]
         public string Name { get; set; }
         [Required]
         [StringLength(200, MinimumLength = 2)]
@@ -27,10 +26,20 @@ namespace STLSitesWebApp.ViewModels
         [NotMapped]
         public List<SelectListItem> LocationCounties { get; set; }
 
-        public LocationCreateViewModel()
-        {
-            LocationCounties = new List<SelectListItem>();
+        public LocationEditViewModel()
+        {  
+        }
 
+        public LocationEditViewModel(int id, ApplicationDbContext context)
+        {
+            Models.Location location = context.Locations.Find(id);
+            this.Id = location.Id;
+            this.Name = location.Name;
+            this.Description = location.Description;
+            this.Address = location.Address;
+            this.LocationCounty = location.LocationCounty;
+
+            LocationCounties = new List<SelectListItem>();
             foreach (County county in Enum.GetValues(typeof(County)))
             {
                 LocationCounties.Add(new SelectListItem
@@ -41,10 +50,11 @@ namespace STLSitesWebApp.ViewModels
             }
         }
 
-        public void Persist(ApplicationDbContext context)
+        public void Persist(int id, ApplicationDbContext context)
         {
             Models.Location location = new Models.Location
             {
+                Id = id,
                 Name = this.Name,
                 Description = this.Description,
                 Address = this.Address,

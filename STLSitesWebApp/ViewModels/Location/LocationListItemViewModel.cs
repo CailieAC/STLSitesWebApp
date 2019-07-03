@@ -20,7 +20,7 @@ namespace STLSitesWebApp.ViewModels
                 .ToList();
         }
 
-        public LocationListItemViewModel(Location location)
+        public LocationListItemViewModel(Models.Location location)
         {
             this.Id = location.Id;
             this.Name = location.Name;
@@ -32,7 +32,7 @@ namespace STLSitesWebApp.ViewModels
         }
 
         //ToDO: Make sure this works...
-        private static string GetAverageRating(Location location)
+        private static string GetAverageRating(Models.Location location)
         {
             string average = "none";
             int count = 0;
@@ -52,7 +52,7 @@ namespace STLSitesWebApp.ViewModels
             return average;
         }
 
-        private static int GetCount(Location location)
+        private static int GetCount(Models.Location location)
         {
             int count = 0;
             if (location.Ratings != null)
@@ -71,8 +71,11 @@ namespace STLSitesWebApp.ViewModels
         public string Name { get; set; }
         public string Description { get; set; }
         public string Address { get; set; }
+        [Display(Name = "County")]
         public County LocationCounty { get; set; }
+        [Display(Name = "Average Rating")]
         public string AverageRating { get; set; }
+        [Display(Name = "Number of Ratings")]
         public int NumberOfRatings { get; set; }
 
     }
