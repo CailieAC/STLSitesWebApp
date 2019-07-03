@@ -15,31 +15,6 @@ namespace STLSitesWebApp.Models
         public string Name { get; set; }
         public string Description { get; set; }
         public List<LocationRating> Ratings { get; set; }
-
-        /*
-        public void Persist(ApplicationDbContext context)
-        {
-            Location location = new Location
-            {
-                Id = this.Id,
-                Name = this.Name,
-                Description = this.Description
-            };
-            context.Add(location);
-            context.SaveChanges();
-        }
-        */
-
-        //public void Persist(int id, ApplicationDbContext context)
-        //{
-        //    Location location = new Location
-        //    {
-        //        Id = id,
-        //        Name = this.Name,
-        //        Description = this.Description,
-        //    };
-        //    context.Add(location);
-        //    context.SaveChanges();
-        //}
+        public string Address { get; set; }
     }
 }

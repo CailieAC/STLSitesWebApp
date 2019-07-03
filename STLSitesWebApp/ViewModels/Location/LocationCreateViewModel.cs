@@ -15,7 +15,10 @@ namespace STLSitesWebApp.ViewModels
         [Required]
         public string Name { get; set; }
         [Required]
+        [StringLength(200, MinimumLength = 2)]
         public string Description { get; set; }
+        [Display(Name = "Street Address")]
+        public string Address { get; set; }
 
         public void Persist(ApplicationDbContext context)
         {
@@ -23,6 +26,7 @@ namespace STLSitesWebApp.ViewModels
             {
                 Name = this.Name,
                 Description = this.Description,
+                Address = this.Address
 
             };
             context.Add(location);
