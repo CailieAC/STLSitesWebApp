@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using STLSitesWebApp.Data;
 
 namespace STLSitesWebApp.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190703020822_Reset3")]
+    partial class Reset3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -205,6 +207,8 @@ namespace STLSitesWebApp.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int?>("LocationDetailsViewModelId");
+
                     b.Property<int>("LocationId");
 
                     b.Property<string>("LocationName");
@@ -215,9 +219,26 @@ namespace STLSitesWebApp.Data.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("LocationDetailsViewModelId");
+
                     b.HasIndex("LocationId");
 
                     b.ToTable("LocationRatings");
+                });
+
+            modelBuilder.Entity("STLSitesWebApp.ViewModels.LocationDetailsViewModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Description");
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("LocationDetailsViewModel");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -267,6 +288,10 @@ namespace STLSitesWebApp.Data.Migrations
 
             modelBuilder.Entity("STLSitesWebApp.Models.LocationRating", b =>
                 {
+                    b.HasOne("STLSitesWebApp.ViewModels.LocationDetailsViewModel")
+                        .WithMany("Ratings")
+                        .HasForeignKey("LocationDetailsViewModelId");
+
                     b.HasOne("STLSitesWebApp.Models.Location")
                         .WithMany("Ratings")
                         .HasForeignKey("LocationId")

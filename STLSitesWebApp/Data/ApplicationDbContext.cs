@@ -12,14 +12,12 @@ namespace STLSitesWebApp.Data
     {
         //DbSet maps to a location for the <class>
         public DbSet<Location> Locations { get; set; }
-        public DbSet<Location> LocationRatings { get; set; }
+        public DbSet<LocationRating> LocationRatings { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
         }
-
-        public DbSet<STLSitesWebApp.ViewModels.LocationDetailsViewModel> LocationDetailsViewModel { get; set; }
 
     }
 }
