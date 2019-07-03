@@ -13,13 +13,16 @@ namespace STLSitesWebApp.ViewModels.Location
     public class LocationEditViewModel
     {
         public int Id { get; set; }
+        [Required]
         [Display(Name = "Location")]
         public string Name { get; set; }
         [Required]
         [StringLength(200, MinimumLength = 2)]
         public string Description { get; set; }
+        [Required]
         [Display(Name = "Street Address")]
         public string Address { get; set; }
+        [Required]
         [Display(Name = "County")]
         public County LocationCounty { get; set; }
 

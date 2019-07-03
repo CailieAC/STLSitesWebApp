@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
@@ -8,7 +9,7 @@ namespace STLSitesWebApp.Models
 {
     public enum County
     {
-        [Display(Name = "St. Charles")]
+        [Display(Name ="St. Charles")]
         StCharles,
         [Display(Name = "St. Clair")]
         StClair,
