@@ -29,6 +29,7 @@ namespace STLSitesWebApp.ViewModels
             this.LocationCounty = location.LocationCounty;
             this.AverageRating = GetAverageRating(location);
             this.NumberOfRatings = GetCount(location);
+           
         }
 
         //ToDO: Make sure this works...
@@ -77,6 +78,6 @@ namespace STLSitesWebApp.ViewModels
         public string AverageRating { get; set; }
         [Display(Name = "Number of Ratings")]
         public int NumberOfRatings { get; set; }
-
+        public List<Models.Category> Categories{ get; set; }
     }
 }

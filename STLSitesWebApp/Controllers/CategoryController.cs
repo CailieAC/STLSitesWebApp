@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using STLSitesWebApp.Data;
 using STLSitesWebApp.Models;
 using STLSitesWebApp.ViewModels.Category;
@@ -47,5 +48,20 @@ namespace STLSitesWebApp.Controllers
             context.SaveChanges();
             return RedirectToAction(actionName: nameof(Index));
         }
+
+        public IActionResult Details(int Id)
+        {
+            Category category = context.Categories.Find(Id);
+            List<CategoryLocation> items = context
+                .CategoryLocations
+                .Include(item => item.Location)
+                .Where(cl => cl.CategoryId == Id)
+                .ToList();
+
+            ViewCategoryViewModel viewModel = new ViewCategoryViewModel(category, items);
+
+            return View(viewModel);
+        }
+
     }
 }

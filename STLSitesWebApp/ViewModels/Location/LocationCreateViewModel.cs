@@ -12,7 +12,7 @@ namespace STLSitesWebApp.ViewModels
 {
     public class LocationCreateViewModel
     {
-        //public int Id { get; set; }
+        public int Id { get; set; }
         [Display(Name = "Location")]
         [Required]
         public string Name { get; set; }
@@ -24,10 +24,16 @@ namespace STLSitesWebApp.ViewModels
         [Display(Name = "County")]
         public County LocationCounty { get; set; }
 
+        public int CategoryId { get; set; }
+        public int LocationId { get; set; }
+        public List<Models.Category> Categories { get; set; }
+
+        public IList<CategoryLocation> CategoryLocations { get; set; }
+
         [NotMapped]
         public List<SelectListItem> LocationCounties { get; set; }
 
-        public LocationCreateViewModel()
+        public LocationCreateViewModel(ApplicationDbContext context)
         {
             LocationCounties = new List<SelectListItem>();
 
@@ -39,16 +45,30 @@ namespace STLSitesWebApp.ViewModels
                     Text = county.ToString()
                 });
             }
+
+            List<Models.Category> categories = context.Categories.ToList();
+            this.Categories = categories;
         }
 
         public void Persist(ApplicationDbContext context)
         {
+            CategoryLocation categoryLocation = new CategoryLocation
+            {
+                CategoryId = this.CategoryId,
+                Category = this.Category,
+
+        public int LocationId { get; set; }
+        public Location Location { get; set; }
+    }
+
+
             Models.Location location = new Models.Location
             {
                 Name = this.Name,
                 Description = this.Description,
                 Address = this.Address,
-                LocationCounty = this.LocationCounty
+                LocationCounty = this.LocationCounty,
+
             };
             context.Add(location);
             context.SaveChanges();

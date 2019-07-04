@@ -4,8 +4,6 @@ using System.Text;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using STLSitesWebApp.Models;
-using STLSitesWebApp.ViewModels;
-using STLSitesWebApp.ViewModels.Location;
 using STLSitesWebApp.ViewModels.Category;
 
 namespace STLSitesWebApp.Data
@@ -31,9 +29,15 @@ namespace STLSitesWebApp.Data
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<CategoryLocation>()
                 .HasKey(loc => new { loc.LocationId, loc.CategoryId });
+
+            ////Can delete below if not working
+            //modelBuilder.Entity<Category>()
+            //    .HasIndex(m => m.Name)
+            //    .IsUnique();
         }
         
 
-        public DbSet<STLSitesWebApp.ViewModels.Category.CategoryCreateViewModel> CategoryCreateViewModel { get; set; }
+        public DbSet<STLSitesWebApp.ViewModels.Category.ViewCategoryViewModel> ViewCategoryViewModel { get; set; }
+
     }
 }

@@ -29,7 +29,7 @@ namespace STLSitesWebApp.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            LocationCreateViewModel viewModel = new LocationCreateViewModel();
+            LocationCreateViewModel viewModel = new LocationCreateViewModel(context);
             return View(viewModel);
         }
 
@@ -38,7 +38,14 @@ namespace STLSitesWebApp.Controllers
         {
             if (!ModelState.IsValid)
                 return View(model);
-            
+
+            IList<CategoryLocation> existingItems = context.CategoryLocations
+            .Where(cl => cl.CategoryId == model.CategoryId)
+            .Where(cl => cl.LocationId == model.LocationId).ToList();
+
+            if(existingItems.Count>0)
+                return View(model);
+
             model.Persist(context);
             return RedirectToAction(controllerName: "Location", actionName: "Index");
 
