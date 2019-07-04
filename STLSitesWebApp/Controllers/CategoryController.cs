@@ -24,15 +24,28 @@ namespace STLSitesWebApp.Controllers
         }
 
         [HttpGet]
-        public IActionResult Add()
+        public IActionResult Create()
         {
-            return View();
+            CategoryCreateViewModel viewModel = new CategoryCreateViewModel();
+            return View(viewModel);
         }
 
         [HttpPost]
-        public IActionResult Add(CategoryCreateViewModel model)
+        public IActionResult Create(CategoryCreateViewModel model)
         {
-            return View();
+            if (!ModelState.IsValid)
+                return View(model);
+
+            model.Persist(context);
+            return RedirectToAction(controllerName: "Category", actionName: "Index");
+        }
+
+        [HttpGet]
+        public IActionResult Delete(int Id)
+        {
+            context.Remove(context.Categories.Find(Id));
+            context.SaveChanges();
+            return RedirectToAction(actionName: nameof(Index));
         }
     }
 }
