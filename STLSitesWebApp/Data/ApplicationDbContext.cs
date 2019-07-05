@@ -4,7 +4,6 @@ using System.Text;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using STLSitesWebApp.Models;
-using STLSitesWebApp.ViewModels.Category;
 
 namespace STLSitesWebApp.Data
 {
@@ -13,7 +12,6 @@ namespace STLSitesWebApp.Data
         //DbSet maps to a location for the <class>
         public DbSet<Location> Locations { get; set; }
         public DbSet<LocationRating> LocationRatings { get; set; }
-
         public DbSet<Category> Categories { get; set; }
         public DbSet<CategoryLocation> CategoryLocations { get; set; }
 
@@ -35,9 +33,5 @@ namespace STLSitesWebApp.Data
             //    .HasIndex(m => m.Name)
             //    .IsUnique();
         }
-        
-
-        public DbSet<STLSitesWebApp.ViewModels.Category.ViewCategoryViewModel> ViewCategoryViewModel { get; set; }
-
     }
 }

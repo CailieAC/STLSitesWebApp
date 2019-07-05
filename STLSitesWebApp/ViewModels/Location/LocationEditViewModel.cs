@@ -26,12 +26,13 @@ namespace STLSitesWebApp.ViewModels.Location
         [Display(Name = "County")]
         public County LocationCounty { get; set; }
 
+        public List<int> CategoryIds { get; set; }
+        public List<Models.Category> Categories { get; set; }
+
         [NotMapped]
         public List<SelectListItem> LocationCounties { get; set; }
 
-        public LocationEditViewModel()
-        {  
-        }
+        public LocationEditViewModel() { }
 
         public LocationEditViewModel(int id, ApplicationDbContext context)
         {
@@ -41,6 +42,7 @@ namespace STLSitesWebApp.ViewModels.Location
             this.Description = location.Description;
             this.Address = location.Address;
             this.LocationCounty = location.LocationCounty;
+            this.Categories = context.Categories.ToList();
 
             LocationCounties = new List<SelectListItem>();
             foreach (County county in Enum.GetValues(typeof(County)))
@@ -64,7 +66,16 @@ namespace STLSitesWebApp.ViewModels.Location
             location.LocationCounty = this.LocationCounty;
 
             context.Update(location);
+
+            List<CategoryLocation> categoryLocations = CreateManyToManyRelationships(location.Id);
+            location.CategoryLocations = categoryLocations;
+
             context.SaveChanges();
+        }
+
+        private List<CategoryLocation> CreateManyToManyRelationships(int locationId)
+        {
+            return CategoryIds.Select(catId => new CategoryLocation { LocationId = locationId, CategoryId = catId }).ToList();
         }
     }
 }
