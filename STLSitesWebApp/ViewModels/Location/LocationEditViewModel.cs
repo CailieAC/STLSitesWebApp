@@ -43,6 +43,7 @@ namespace STLSitesWebApp.ViewModels.Location
             this.Address = location.Address;
             this.LocationCounty = location.LocationCounty;
             this.Categories = context.Categories.ToList();
+            this.CategoryIds = GetCategories(location, context);
 
             LocationCounties = new List<SelectListItem>();
             foreach (County county in Enum.GetValues(typeof(County)))
@@ -57,25 +58,50 @@ namespace STLSitesWebApp.ViewModels.Location
 
         public void Persist(int locationId, ApplicationDbContext context)
         {
-            Models.Location location = context.Locations.Find(this.Id);
+            //Below version updated a location while maintaining it's Id
+            //Models.Location location = context.Locations.Find(this.Id);
 
-            location.Id = this.Id;
-            location.Name = this.Name;
-            location.Description = this.Description;
-            location.Address = this.Address;
-            location.LocationCounty = this.LocationCounty;
+            //location.Id = this.Id;
+            //location.Name = this.Name;
+            //location.Description = this.Description;
+            //location.Address = this.Address;
+            //location.LocationCounty = this.LocationCounty;
 
-            context.Update(location);
+            //context.Update(location);
+
+            //Below version creates a new location each time and deleted the old one
+
+            Models.Location location = new Models.Location()
+            {
+                Name = this.Name,
+                Description = this.Description,
+                Address = this.Address,
+                LocationCounty = this.LocationCounty
+            };
+            context.Locations.Remove(context.Locations.Find(Id));
+            context.Add(location);
 
             List<CategoryLocation> categoryLocations = CreateManyToManyRelationships(location.Id);
             location.CategoryLocations = categoryLocations;
-
             context.SaveChanges();
         }
 
         private List<CategoryLocation> CreateManyToManyRelationships(int locationId)
         {
             return CategoryIds.Select(catId => new CategoryLocation { LocationId = locationId, CategoryId = catId }).ToList();
+        }
+
+        private List<int> GetCategories(Models.Location location, ApplicationDbContext context)
+        {
+            List<int> categoryIds = new List<int>();
+            foreach (CategoryLocation categoryLocation in context.CategoryLocations)
+            {
+                if (categoryLocation.LocationId == location.Id)
+                {
+                    categoryIds.Add(categoryLocation.CategoryId);
+                }
+            }
+            return categoryIds;
         }
     }
 }

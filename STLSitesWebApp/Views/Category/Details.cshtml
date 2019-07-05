@@ -22,9 +22,6 @@
             {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Location.Name)
-                    </td>
-                    <td>
                         @Html.ActionLink(item.Location.Name, "Details", "Location", new { LocationId = item.LocationId })
                     </td>
                 </tr>

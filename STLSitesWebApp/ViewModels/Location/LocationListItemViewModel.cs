@@ -25,13 +25,13 @@ namespace STLSitesWebApp.ViewModels
         [Display(Name = "Number of Ratings")]
         public int NumberOfRatings { get; set; }
 
-        public string Categories { get; set; }
+        //public string Categories { get; set; }
 
         public static List<LocationListItemViewModel> GetLocations(ApplicationDbContext context)
         {
             return context.Locations
                 .Include(p => p.Ratings)
-                .Include(p=> p.CategoryLocations)
+                //.Include(p=> p.CategoryLocations)
                 .Select(p => new LocationListItemViewModel(p))
                 .ToList();
         }
@@ -45,25 +45,25 @@ namespace STLSitesWebApp.ViewModels
             this.LocationCounty = location.LocationCounty;
             this.AverageRating = GetAverageRating(location);
             this.NumberOfRatings = GetCount(location);
-            this.Categories = GetCategories(location);
+            //this.Categories = GetCategories(location);
         }
 
-        private string GetCategories(Models.Location location)
-        {
-            List<string> categoryNames = location.CategoryLocations
-                .Select(cl => cl.Category)
-                .Select(c => c.Name)
-                .ToList();
-            return String.Join(", ", categoryNames);
+        //private string GetCategories(Models.Location location)
+        //{
+            //List<string> categoryNames = location.CategoryLocations
+            //    .Select(cl => cl.Category)
+            //    .Select(c => c.Name)
+            //    .ToList();
+            //return string.Join(", ", location.CategoryLocations.Select(cl=>cl.Category.Name));
 
             //Alternate method to the above, if I am getting null errors
-            //Would need to pass Application DbContext context into this method and the contructor method above
+            ////Would need to pass Application DbContext context into this method and the contructor method above
             //List<string> categoryNames = new List<string>();
             //List<int> CategoryIds = location.CategoryLocations.Select(cl => cl.CategoryId).ToList();
             //List<Models.Category> categories = context.Categories.Where(c => CategoryIds.Contains(c.Id)).ToList();
             //categoryNames = categories.Select(c => c.Name).ToList();
             //return String.Join(", ", categoryNames);
-        }
+        //}
 
         private static string GetAverageRating(Models.Location location)
         {

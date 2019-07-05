@@ -24,6 +24,7 @@ namespace STLSitesWebApp.ViewModels
         [Display(Name = "County")]
         public County LocationCounty { get; set; }
 
+        [Required]
         public List<int> CategoryIds { get; set; }
         public List<Models.Category> Categories { get; set; }
         public IList<CategoryLocation> CategoryLocations { get; set; }
@@ -57,11 +58,16 @@ namespace STLSitesWebApp.ViewModels
                 Address = this.Address,
                 LocationCounty = this.LocationCounty,
             };
-
+            context.Locations.Add(location);
+            
             List<CategoryLocation> categoryLocations = CreateManyToManyRelationships(location.Id);
             location.CategoryLocations = categoryLocations;
 
-            context.Locations.Add(location);
+            //foreach (CategoryLocation categoryLocation in CategoryLocations)
+            //{
+            //    context.CategoryLocations.Add(categoryLocation);
+            //}
+            
             context.SaveChanges();
         }
 
